@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Lesenelir's First DApp</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .box {
+        width: 40%;
+        margin: 200px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #c1c1c1;
+      }
+
+      button {
+        width: 80%;
+        margin: 10px 0 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!--  创建一个app 从区块链上读取和写入数据  -->
+    <div class="box">
+      <h1>Lesenelir's First DApp</h1>
+      <h4 id="h4">Your mood: initial mood</h4>
+      <p>Here you can set or get the mood~</p>
+      <label for="mood">Input label: </label>
+      <input type="text" id="mood">
+      <button onclick="getMood()">get mood</button>
+      <button onclick="setMood()">set mood</button>
+    </div>
+
+    <!--  引入ethers.js  -->
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+            type="application/javascript"
+    ></script>
+
+    <!--  编写js脚本  -->
+    <script>
+      // 合约的地址和ABI
+      const moodContractABI = [
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "_mood",
+              "type": "string"
+            }
+          ],
+          "name": "setMood",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "getMood",
+          "outputs": [
+            {
+              "internalType": "string",
+              "name": "",
+              "type": "string"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        }
+      ]
+      const moodContractAddress = '0xAA34d32cc9bD2DcF2D1f99ab693f0735424Db4b7'
+      const provider = new ethers.providers.Web3Provider(window.ethereum, 'rinkeby')
+
+      let moodContract,
+          signer
+
+      provider.send("eth_requestAccounts", []).then(() => {
+        provider.listAccounts().then((accounts) => {
+          signer = provider.getSigner(accounts[0]) // 获得钱包实例
+          moodContract = new ethers.Contract(
+              moodContractAddress,
+              moodContractABI,
+              signer
+          )
+        })
+      })
+
+      // 异步请求调用smart contract
+      async function getMood() {
+        const getMoodPromise = moodContract.getMood() // 合约中的getMood方法
+        const mood = await getMoodPromise
+        console.log(mood)
+        document.getElementById('h4').textContent = `Your mood: ${mood}`
+      }
+      async function setMood() {
+        const mood = document.getElementById('mood').value
+        const setMoodPromise = moodContract.setMood(mood) // 合约中的setMood方法
+        await setMoodPromise
+      }
+
+    </script>
+  </body>
+</html>
