@@ -5,3 +5,4 @@ Some example practices from LearnWeb3 DAO
 - [x] Build your first dapp
 - [x] Build your own cryptocurrency
 - [x] Build your own nft
+- [x] Intermediate Solidity
