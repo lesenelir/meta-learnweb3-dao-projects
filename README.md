@@ -6,3 +6,4 @@ Some example practices from LearnWeb3 DAO
 - [x] Build your own cryptocurrency
 - [x] Build your own nft
 - [x] Intermediate Solidity
+- [x] Build full whitelist dApp
