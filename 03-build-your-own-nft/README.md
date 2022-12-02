@@ -5,7 +5,7 @@
 #### ERC-721
 
 - ERC-721 specifically is a standard for creating NFT's.
-- Most NFTs on Ethereum comply with the ERC-20 specification. 
+- Most NFTs on Ethereum comply with the ERC-20 specification.
 
 #### Hardhat
 
@@ -32,14 +32,14 @@
 
 - Create a smart contract to inherit the ERC721 contract and then `npx hardhat compile` to compile contract
 
-- Deploy contract to goeril test network 
+- Deploy contract to goeril test network
 
   - write a deployment script (deploy.js)
-  
-  - conrigure the network with quicknode and export `HTTP Provider` & `private key`
-  
-  - conrigure the hardhat.config.js
-  
+
+  - configure the network with quicknode and export `HTTP Provider` & `private key`
+
+  - configure the hardhat.config.js
+
 - The contract call the constructor of the parent contract and call the related methods from the parent contract
 
 - See your own nft in testnets.opensea.io
