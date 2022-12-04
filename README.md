@@ -9,6 +9,7 @@ Some example practices from LearnWeb3 DAO
 ## Sophomore
 - [x] Intermediate Solidity
 - [x] Build full whitelist dApp
+- [x] Build full NFT collection
 
 ## License
 
