@@ -2,7 +2,7 @@
 Some example practices from LearnWeb3 DAO
 
 ## Freshman
-- [x] Build your first dapp
+- [x] Build your first DApp
 - [x] Build your own cryptocurrency
 - [x] Build your own nft
 
